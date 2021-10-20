@@ -9,7 +9,7 @@
 
         @if(session('saved'))
 
-            <div  x-show="isOpen"
+            <div  x-show="isOpen" x-transition.scale.origin.top.duration.200ms
                   class="w-full text-white bg-green-500">
 
                 <div class="container flex items-center justify-between px-6 py-4 mx-auto">
@@ -23,7 +23,7 @@
                         </svg>
 
 
-                        <p class="mx-3">Student Added.</p>
+                        <p class="mx-3">Subject Added.</p>
 
                     </div>
 
@@ -61,16 +61,16 @@
 
                         <div class="relative w-full px-4 max-w-full flex-grow flex-1">
 
-                            <h3 class="font-semibold text-base text-blueGray-700">Student Information</h3>
+                            <h3 class="font-semibold text-base text-blueGray-700">Subject Listing</h3>
 
                         </div>
 
                         <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
 
                             <button @click="isOpen = !isOpen"
-                                    class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase
+                                    class="bg-blue-600 text-white active:bg-blue-700 text-xs font-bold uppercase
                                  px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all
-                                 duration-150" type="button">Add student
+                                 duration-150" type="button">Add Subject
                             </button>
 
                         </div>
@@ -91,7 +91,7 @@
                                 border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap
                                 font-semibold text-left">
 
-                                First Name
+                                Subject Name
 
                             </th>
 
@@ -99,43 +99,7 @@
                                 border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap
                                 font-semibold text-left">
 
-                                Last Name
-
-                            </th>
-
-                            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid
-                                border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap
-                                font-semibold text-left">
-
-                                Date of Birth
-
-                            </th>
-
-                            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid
-                                border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap
-                                font-semibold text-left">
-
-                                Class
-
-                            </th>
-
-                            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid
-                                border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap
-                                font-semibold text-left">
-
-                                Phone Number
-
-                            </th>
-
-                            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-
-                                Email
-
-                            </th>
-
-                            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-
-                                Gender
+                                Cost Amount
 
                             </th>
 
@@ -151,59 +115,25 @@
 
                         <tbody>
 
-                        @forelse($students as $student)
+                        @forelse($subjects as $subject)
 
                             <tr>
 
                                 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
 
-                                    {{ $student['first_nm'] }}
+                                    {{ $subject['subject_nm'] }}
 
                                 </td>
 
                                 <td class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
 
-                                    {{ $student['last_nm'] }}
+                                    {{ $subject['cost_amt'] }}
 
                                 </td>
 
                                 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
 
-
-                                    {{ $student['dob'] }}
-
-                                </td>
-
-                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-
-                                    {{ $student['class'] }}
-
-                                </td>
-
-                                <td class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-
-                                    {{ $student['phone_nbr'] }}
-
-                                </td>
-
-                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-
-
-                                    {{ $student['email_addr'] }}
-
-                                </td>
-
-                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-
-
-                                    {{ $student['gender'] }}
-
-                                </td>
-
-                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-
-                                    <a href="{{ route('Student.edit',$student['id']) }}" class="text-white shadow-md font-bold py-1 px-3 rounded text-xs bg-green-500 hover:bg-green-800">Edit</a>
-                                    <a href="#" class="text-white shadow-md font-bold py-1 px-3 rounded text-xs bg-blue-500 hover:bg-blue-800">View</a>
+                                    <a href="{{ route('Subject.edit',$subject['id']) }}" class="text-white shadow-md font-bold py-1 px-3 rounded text-xs bg-green-500 hover:bg-green-800">Edit</a>
 
                                 </td>
 
@@ -215,7 +145,7 @@
                             border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
 
 
-                                Not Students Added
+                                Not Subjects Added
 
                             </td>
 
@@ -231,7 +161,7 @@
 
         </div>
 
-        <div x-show="isOpen"
+        <div x-show="isOpen" x-transition.origin.top.duration.150ms
              class="fixed w-full flex items-center justify-center h-screen top-0 bg-black bg-opacity-75 ">
 
             <div @click.away="isOpen = false"
@@ -239,11 +169,11 @@
 
                 <div class="w-full text-center p-3">
 
-                    <h1 class="lg:text-xl font-semibold">Add Student Information</h1>
+                    <h1 class="lg:text-xl font-semibold">Add Subject Information</h1>
 
                 </div>
 
-                <form action="{{ route('Student.store')  }}" method="POST" class="p-5">
+                <form action="{{ route('Subject.store')  }}" method="POST" class="p-5">
 
                     @csrf
 
@@ -251,11 +181,11 @@
 
                         <div>
 
-                            <label class="text-gray-700 dark:text-gray-200" for="first_nm">
+                            <label class="text-gray-700 dark:text-gray-200" for="subject_nm">
 
-                                First Name
+                                Subject Name
 
-                                <input name="first_nm" id="first_nm" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white
+                                <input name="subject_nm" id="subject_nm" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white
                             border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600
                             focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
 
@@ -263,7 +193,7 @@
 
                             <div>
 
-                                @error('first_nm')
+                                @error('subject_nm')
 
                                 <div class="text-red-700 font-light text-sm m-1">
 
@@ -279,114 +209,11 @@
 
                         <div>
 
-                            <label class="text-gray-700 dark:text-gray-200" for="last_nm">Last Name</label>
+                            <label class="text-gray-700 dark:text-gray-200" for="cost_amt">
 
-                            <input name="last_nm" id="last_nm" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white
-                            border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600
-                            focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                                Cost Amount
 
-                            <div>
-
-                                @error('last_nm')
-
-                                <div class="text-red-700 font-light text-sm m-1">
-
-                                    * {{ $message }}
-
-                                </div>
-
-                                @enderror
-
-                            </div>
-
-                        </div>
-
-                        <div>
-
-                            <label class="text-gray-700 dark:text-gray-200" for="dob">
-
-                                Date of Birth
-
-                                <input name="dob" id="dob" type="date" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border
-                            border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600
-                            focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-
-                            </label>
-
-                            <div>
-
-                                @error('dob')
-
-                                <div class="text-red-700 font-light text-sm m-1">
-
-                                    * {{ $message }}
-
-                                </div>
-
-                                @enderror
-
-                            </div>
-
-                        </div>
-
-                        <div>
-
-                            <label class="text-gray-700 dark:text-gray-200" for="last_nm">Class</label>
-
-                            <input name="class" id="class" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white
-                            border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600
-                            focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-
-                            <div>
-
-                                @error('class')
-
-                                <div class="text-red-700 font-light text-sm m-1">
-
-                                    * {{ $message }}
-
-                                </div>
-
-                                @enderror
-
-                            </div>
-
-                        </div>
-
-                        <div>
-
-                            <label class="text-gray-700 dark:text-gray-200" for="email_addr">
-                                Email Address
-
-                                <input name="email_addr" id="email" type="email" class="block w-full px-4 py-2 mt-2 text-gray-700
-                            bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600
-                            focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-
-                            </label>
-
-                            <div>
-
-                                @error('email_addr')
-
-                                <div class="text-red-700 font-light text-sm m-1">
-
-                                    * {{ $message }}
-
-                                </div>
-
-                                @enderror
-
-                            </div>
-
-                        </div>
-
-                        <div>
-
-                            <label class="text-gray-700 dark:text-gray-200" for="phone_nbr">
-
-                                Phone Number
-
-                                <input name="phone_nbr" id="phone_no" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white
+                                <input name="cost_amt" id="cost_amt" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white
                              border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600
                              focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
 
@@ -394,7 +221,7 @@
 
                             <div>
 
-                                @error('phone_nbr')
+                                @error('cost_amt')
 
                                 <div class="text-red-700 font-light text-sm m-1">
 
@@ -408,41 +235,6 @@
 
                         </div>
 
-                        <div>
-
-                            <label class="text-gray-700 dark:text-gray-200" for="gender">Gender</label>
-
-                            <select id="gender"
-                                    name="gender"
-                                    class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300
-                                    rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500
-                                    dark:focus:border-blue-500 focus:outline-none focus:ring">
-
-                                <option selected disabled> Please Select Gender</option>
-
-                                <option value="Male"> Male</option>
-
-                                <option value="Female"> Female</option>
-
-                            </select>
-
-                            <div>
-
-                                @error('gender')
-
-                                <div class="text-red-700 font-light text-sm m-1">
-
-                                    * {{ $message }}
-
-                                </div>
-
-                                @enderror
-
-                            </div>
-
-                        </div>
-
-                    </div>
 
                     <div class="flex justify-end mt-6">
 
