@@ -29,6 +29,7 @@
 
 
                     <button @click="isOpen = false"
+                            @keydown.esc.window="isOpen = false"
 
                         class="p-1 transition-colors duration-200 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">
 
@@ -234,6 +235,7 @@
              class="fixed w-full flex items-center justify-center h-screen top-0 bg-black bg-opacity-75 ">
 
             <div @click.away="isOpen = false"
+                 @keydown.esc.window="isOpen = false"
                  class="bg-white w-3/4 rounded ">
 
                 <div class="w-full text-center p-3">
