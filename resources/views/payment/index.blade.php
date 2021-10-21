@@ -5,7 +5,7 @@
 
     <x-alert message="Payment Updated Successful"/>
 
-    <x-alert-failed message="Payment Update Failed"/>
+    <x-alert-failed message="Payment Failed Please Check Student Details"/>
 
     <div x-data="{ isOpen: false }"
          class="flex items-center justify-center w-full">

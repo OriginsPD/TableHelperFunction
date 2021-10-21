@@ -29,6 +29,7 @@ class PaymentController extends Controller
         $studentChoice = SubjectChoice::where([
             'student_id' => $request->students_id,
             'subject_id' => $request->subjects_id,
+            'status' => 1,
         ])->exists();
 
         if ($studentChoice) {
@@ -93,23 +94,23 @@ class PaymentController extends Controller
 
 //        dd($trans);
 
-        $newAmount = $trans[0]->amount_due - $request->amount_paid;
-        $balance = $trans[0]->balance_amt +  $request->amount_paid;
+        $newAmount = $trans[0]->balance_amt - $request->amount_paid;
+        $balance = $trans[0]->amount_paid +  $request->amount_paid;
 
 //        dd($newAmount);
 
         if ($newAmount >= 0) {
             Transaction::where('id',$id)
                 ->update([
-                    'amount_due' => $newAmount,
-                    'amount_paid' => $request->amount_paid,
-                    'balance_amt' => $balance,
+//                    'amount_due' => $newAmount,
+                    'amount_paid' => $balance,
+                    'balance_amt' => $newAmount,
                 ]);
 
             Payment::where('id',$id)
                 ->update([
-                    'amount_paid' => $request->amount_paid,
-                    'balance_amt' => $balance,
+                    'amount_paid' =>$balance,
+                    'balance_amt' => $newAmount,
                     'date_paid' => date('Y-m-d')
                 ]);
 

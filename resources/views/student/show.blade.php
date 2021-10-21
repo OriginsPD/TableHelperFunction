@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    <x-alert message="Student Status Updated Successful"/>
+
     <div class="w-full xl:w-full mb-12 xl:mb-0 px-4 mx-auto mt-8">
 
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
@@ -18,7 +20,6 @@
                         <h3 class="font-semibold text-base text-blueGray-700">Student Choice Information</h3>
 
                     </div>
-
 
                 </div>
 
@@ -56,10 +57,10 @@
 
                         </th>
 
-{{--                        <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">--}}
+                        <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
 
 
-{{--                        </th>--}}
+                        </th>
 
 
                     </tr>
@@ -73,7 +74,7 @@
                     @forelse($students as $student)
 
                         @foreach($student->subjectChoice as $choice)
-{{--                        {{ dd($pStudentChoice) }}--}}
+{{--                        {{ dd($choice) }}--}}
 
                         <tr>
 
@@ -86,7 +87,13 @@
 
                             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
 
-                                {{ ($choice->status) === true ? 'Approve' : 'Rejected' }}
+                                @if($choice['status'] === null)
+                                    Pending
+                                @elseif($choice['status'])
+                                    Approved
+                                @else
+                                    Rejected
+                                @endif
 
                             </td>
 
@@ -96,12 +103,42 @@
 
                             </td>
 
-{{--                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">--}}
+                            <td class="flex space-x-2 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
 
-{{--                                <a href="{{ route('Student.edit',$student['id']) }}"--}}
-{{--                                   class="text-white shadow-md font-bold py-1 px-3 rounded text-xs bg-green-500 hover:bg-green-800">Edit</a>--}}
+                                @if($choice['status'] === null)
 
-{{--                            </td>--}}
+                                    <form action="{{ route('Choice.update',$choice['id']) }}" method="POST" name="approve">
+
+                                        @csrf
+
+                                        @method('PUT')
+
+                                        <button id="approve" type="submit" name="status" value="1"
+                                                class="text-white shadow-md font-bold py-1 px-3 rounded text-xs bg-green-500 hover:bg-green-800">
+
+                                            Approve
+
+                                        </button>
+
+                                    </form>
+
+                                    <form action="{{ route('Choice.update',$choice['id']) }}" method="POST" name="rejected">
+
+                                        @csrf
+
+                                        @method('PUT')
+
+                                    <button type="submit" name="status" value="0" id="rejected"
+                                            class="text-white shadow-md font-bold py-1 px-3 rounded text-xs bg-red-500 hover:bg-red-800">
+
+                                        Rejected
+
+                                    </button>
+
+                                    </form>
+                                @endif
+
+                            </td>
 
 
                         </tr>
