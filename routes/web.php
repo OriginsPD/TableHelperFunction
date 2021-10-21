@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\SubjectChoiceController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,12 +23,12 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::view('/dashboard','dashboard')->name('dashboard');
 
     Route::resource('Student', StudentsController::class);
     Route::resource('Subject', SubjectController::class);
+    Route::resource('Choice', SubjectChoiceController::class);
+    Route::resource('Payments', PaymentController::class);
 
 });
 

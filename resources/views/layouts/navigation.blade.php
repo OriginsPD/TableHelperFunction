@@ -29,6 +29,19 @@
                     </x-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('Choice.index')" :active="request()->routeIs('Choice.index')">
+                        {{ __('View Choices') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('Payments.index')" :active="request()->routeIs('Payments.index')">
+                        {{ __('Payments Information') }}
+                    </x-nav-link>
+                </div>
+
+
             </div>
 
             <!-- Settings Dropdown -->

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateSubject extends FormRequest
+class CreatePayment extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,16 @@ class CreateSubject extends FormRequest
     public function rules(): array
     {
         return [
-            'subject_nm' => 'required',
-            'cost_amt' => 'required|numeric',
+            'students_id' => 'required',
+            'subjects_id' => 'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'students_id.required' => 'The Student name is required',
+            'subjects_id.required' => 'The Subject choices is required',
         ];
     }
 }

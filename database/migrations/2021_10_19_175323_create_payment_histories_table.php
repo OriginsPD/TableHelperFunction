@@ -17,6 +17,7 @@ class CreatePaymentHistoriesTable extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained('students','id');
             $table->decimal('amount_paid');
+            $table->date('date_paid');
             $table->string('description');
         });
     }

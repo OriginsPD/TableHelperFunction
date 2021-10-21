@@ -9,6 +9,8 @@ class SubjectChoice extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'student_id',
         'subject_id',

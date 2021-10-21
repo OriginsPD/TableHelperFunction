@@ -23,7 +23,7 @@ class Students extends Model
 
     public function subjectChoice(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(SubjectChoice::class, 'student_id');
+        return $this->hasMany(SubjectChoice::class, 'student_id')->with('subjects');
     }
 
     public function payments(): \Illuminate\Database\Eloquent\Relations\HasMany

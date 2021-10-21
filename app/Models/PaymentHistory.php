@@ -14,6 +14,8 @@ class PaymentHistory extends Model
     protected $fillable = [
         'student_id',
         'amount_paid',
+        'date_paid',
+        'description',
     ];
 
     public function students(): \Illuminate\Database\Eloquent\Relations\BelongsTo

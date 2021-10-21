@@ -9,7 +9,7 @@ class SubjectController extends Controller
 {
     public function index()
     {
-        $subjects = Subject::all()->toArray();
+        $subjects = Subject::paginate(5);
 
         return view('subject.index', compact(['subjects']));
     }
@@ -21,7 +21,7 @@ class SubjectController extends Controller
             'cost_amt' => $request->cost_amt,
         ]);
 
-        $saved = true;
+        $saved = 'success';
 
         return redirect()->route('Subject.index')->with('saved', $saved);
     }
@@ -40,7 +40,7 @@ class SubjectController extends Controller
             'cost_amt' => $request->cost_amt,
         ]);
 
-        $saved = true;
+        $saved = 'success';
 
         return redirect()->route('Subject.index')->with('saved', $saved);
     }
