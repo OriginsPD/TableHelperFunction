@@ -22,7 +22,6 @@ const table_end = '</table>';
 if (!function_exists('hlp_table')) {
     function hlp_table($col)
     {
-
         $column = $col[0]->toArray();
 
         echo table_start;
