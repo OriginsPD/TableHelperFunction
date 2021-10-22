@@ -17,7 +17,7 @@ class CreateSubjectChoicesTable extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained('students','id');
             $table->foreignId('subject_id')->constrained('subjects','id');
-            $table->boolean('status')->nullable();
+            $table->boolean('status')->default(null)->nullable();
             $table->year('year_of_exam');
         });
     }

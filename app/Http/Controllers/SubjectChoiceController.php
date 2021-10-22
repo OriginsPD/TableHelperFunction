@@ -28,7 +28,6 @@ class SubjectChoiceController extends Controller
         $exist = SubjectChoice::where([
             'student_id' => $request->students_id,
             'subject_id' => $request->subjects_id,
-            'status' => null,
             'year_of_exam' => $request->year_of_exam,
         ])->exists();
 

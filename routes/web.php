@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectChoiceController;
 use App\Http\Controllers\SubjectController;
@@ -23,12 +24,13 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::view('/dashboard','dashboard')->name('dashboard');
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     Route::resource('Student', StudentsController::class);
     Route::resource('Subject', SubjectController::class);
     Route::resource('Choice', SubjectChoiceController::class);
     Route::resource('Payments', PaymentController::class);
+    Route::resource('Report', ReportController::class);
 
 });
 

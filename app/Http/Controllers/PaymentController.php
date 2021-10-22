@@ -88,7 +88,7 @@ class PaymentController extends Controller
         return view('payment.show', compact(['infos', 'transactions']));
     }
 
-    public function update(MakePayment $request, $id)
+    public function update(MakePayment $request, $id): RedirectResponse
     {
         $trans = Transaction::where('id', $id)->get();
 

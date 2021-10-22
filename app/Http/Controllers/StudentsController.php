@@ -64,7 +64,7 @@ class StudentsController extends Controller
 //           $query->where('id',$id);
 //       }])->where('student_id',$id)->paginate(3);
 
-        $students =   Students::with(['subjectChoice' => function($query) use ($id) {
+        $students = Students::with(['subjectChoice' => function($query) use ($id) {
 
                $query->where('student_id',$id);
 

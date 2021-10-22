@@ -3,10 +3,9 @@
         {{ __('Student Choices') }}
     </x-slot>
 
-        <x-alert message="Choices Added Successful"/>
+    <x-alert message="Choices Added Successful"/>
 
-
-        <x-alert-failed message="Choices Adding Failed"/>
+    <x-alert-failed message="Choices Adding Failed"/>
 
     <div x-data="{ isOpen: false }"
          class="flex items-center justify-center w-full">

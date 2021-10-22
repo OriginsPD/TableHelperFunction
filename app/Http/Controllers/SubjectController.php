@@ -16,12 +16,23 @@ class SubjectController extends Controller
 
     public function store(CreateSubject $request): \Illuminate\Http\RedirectResponse
     {
-        Subject::create([
+        $exist = Subject::where([
             'subject_nm' => $request->subject_nm,
-            'cost_amt' => $request->cost_amt,
-        ]);
+        ])->exists();
 
-        $saved = 'success';
+        if (!$exist) {
+
+            Subject::create([
+                'subject_nm' => $request->subject_nm,
+                'cost_amt' => $request->cost_amt,
+            ]);
+
+            $saved = 'success';
+
+            return redirect()->route('Subject.index')->with('saved', $saved);
+        }
+
+        $saved = 'fail';
 
         return redirect()->route('Subject.index')->with('saved', $saved);
     }
@@ -35,7 +46,7 @@ class SubjectController extends Controller
 
     public function update(CreateSubject $request, $id): \Illuminate\Http\RedirectResponse
     {
-        Subject::where('id',$id)->update([
+        Subject::where('id', $id)->update([
             'subject_nm' => $request->subject_nm,
             'cost_amt' => $request->cost_amt,
         ]);
