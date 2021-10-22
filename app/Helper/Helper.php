@@ -30,8 +30,6 @@ if (!function_exists('hlp_table')) {
         echo table_row_start;
 
 
-
-
         foreach ($column as $key => $item) {
 
             echo table_header_start;

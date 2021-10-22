@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\helperController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentsController;
@@ -31,6 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('Choice', SubjectChoiceController::class);
     Route::resource('Payments', PaymentController::class);
     Route::resource('Report', ReportController::class);
+
+    Route::get('Help', helperController::class)->name('help');
 
 });
 
