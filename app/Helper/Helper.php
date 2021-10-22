@@ -38,7 +38,6 @@ if (!function_exists('hlp_table')) {
             echo table_header_end;
         }
 
-
         echo table_row_end;
 
         echo table_body_start;
